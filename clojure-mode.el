@@ -1850,7 +1850,7 @@ If PATH is nil, use the path to the file backing the current buffer."
 (defun clojure-insert-ns-form-at-point ()
   "Insert a namespace form at point."
   (interactive)
-  (insert (format "(ns %s)" (funcall clojure-expected-ns-function))))
+  (insert (format "(ns %s\n  (:require\n   ))" (funcall clojure-expected-ns-function))))
 
 (defun clojure-insert-ns-form ()
   "Insert a namespace form at the beginning of the buffer."
