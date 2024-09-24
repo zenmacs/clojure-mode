@@ -844,6 +844,13 @@ any number of matches of `clojure--sym-forbidden-rest-chars'.")
 Matches the rule `clojure--keyword-sym-forbidden-1st-chars' followed by
 any number of matches of `clojure--sym-forbidden-rest-chars'."))
 
+(defface rama-dataflow-variable-face
+  `()
+  "."
+  :group 'vemv)
+
+(defvar rama-dataflow-variable-face 'rama-dataflow-variable-face)
+
 (defconst clojure-font-lock-keywords
   (eval-when-compile
     `(;; Any def form
@@ -1038,7 +1045,9 @@ any number of matches of `clojure--sym-forbidden-rest-chars'."))
           t)
          "\\>")
        0 font-lock-builtin-face)
-      ;; Dynamic variables - *something* or @*something*
+      ;; Rama dataflow vars
+      (,(concat "\\(?:\\<\\|/\\)\\(\\*" clojure--sym-regexp "[^*]\\)\\>")
+       1 rama-dataflow-variable-face)
       (,(concat "\\(?:\\<\\|/\\)@?\\(\\*" clojure--sym-regexp "\\*\\)\\>")
        1 font-lock-variable-name-face)
       ;; Global constants - nil, true, false
